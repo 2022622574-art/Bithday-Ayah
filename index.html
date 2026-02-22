@@ -170,27 +170,51 @@
     }
     }
 
-    /* 📱 MOBILE FIX */
+   /* 📱 MOBILE FIX */
     @media (max-width: 768px) {
+
+    body {
+        padding-top: 30px;
+    }
 
     h1 {
         font-size: 32px;
         margin-top: 40px;
+        text-align: center;
+    }
+
+    .cake-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .cake {
-        width: 140px;
+        width: 150px;
     }
 
-    .bg-photo {
-        width: 30vw;
-        opacity: 0.6;
+    button {
+        display: block;
+        margin: 30px auto;
     }
 
-    .photo1 { top: 20px; left: 10px; }
-    .photo2 { top: 20px; right: 10px; }
-    .photo3 { bottom: 20px; left: 10px; }
-    .photo4 { bottom: 20px; right: 10px; }
+    /* TOP PHOTOS */
+    .photo1, .photo2 {
+        width: 45vw;
+        top: 120px;   /* push down */
+    }
+
+    .photo1 { left: 5vw; }
+    .photo2 { right: 5vw; }
+
+    /* BOTTOM PHOTOS */
+    .photo3, .photo4 {
+        width: 45vw;
+        bottom: 120px;  /* push up */
+    }
+
+    .photo3 { left: 5vw; }
+    .photo4 { right: 5vw; }
 
     }
   </style>
