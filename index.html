@@ -17,7 +17,7 @@
     /* Decorative photos */
     .bg-photo {
         position: absolute;
-        width: 18vw;              /* responsive size */
+        width: 18vw;
         max-width: 180px;
         min-width: 100px;
         border-radius: 15px;
@@ -50,7 +50,6 @@
       z-index: 2;
     }
 
-    /* Strong shadow */
     .shadow {
       width: 170px;
       height: 30px;
@@ -118,105 +117,86 @@
       z-index: 5;
     }
 
-    /* BOLD SPARKLES */
+    /* Sparkles */
     .sparkle {
       position: absolute;
-      width: 25px;
-      height: 25px;
-      background: radial-gradient(circle, #ff1493 900%, #ff69b4 50%, transparent 0%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, #ff1493 0%, #ff69b4 40%, transparent 70%);
       border-radius: 50%;
-      box-shadow: 
-        0 0 100px #ff1493,
-        0 0 100px #ff69b4,
-        0 0 60px #ff69b4;
+      box-shadow:
+        0 0 15px #ff1493,
+        0 0 25px #ff69b4;
       animation: sparkleMove linear infinite;
-      opacity: 0.1;
+      opacity: 0.8;
     }
 
     @keyframes sparkleMove {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-25vh) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-25vh) scale(1.5); opacity: 0; }
     }
 
-    /* CONFETTI */
+    /* Confetti */
     .confetti {
-    position: fixed;
-    width: 10px;
-    height: 14px;
-    top: 50%;
-    left: 50%;
-    opacity: 1;
-    pointer-events: none;
-    z-index: 20;
+      position: fixed;
+      width: 10px;
+      height: 14px;
+      top: 50%;
+      left: 50%;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 20;
     }
 
     @keyframes confettiFall {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) rotate(720deg);
-        opacity: 0;
-    }
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0; }
     }
 
-   /* 📱 MOBILE FIX */
+    /* 📱 MOBILE FIX */
     @media (max-width: 768px) {
 
-    body {
-        padding-top: 90px;
-    }
-
-    h1 {
-        font-size: 32px;
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    .cake-container {
+      .main-content {
+        height: 100vh;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-    }
+      }
 
-    .cake {
+      h1 {
+        font-size: 32px;
+        margin-top: 0;
+      }
+
+      .cake {
         width: 150px;
-    }
+      }
 
-    button {
-        display: block;
-        margin: 30px auto;
-    }
+      button {
+        margin: 25px auto;
+      }
 
-    /* TOP PHOTOS */
-    .photo1, .photo2 {
+      /* TOP PHOTOS */
+      .photo1, .photo2 {
         width: 45vw;
-        top: 120px;   /* push down */
-    }
+        top: 100px;
+      }
 
-    .photo1 { left: 5vw; }
-    .photo2 { right: 5vw; }
+      .photo1 { left: 5vw; }
+      .photo2 { right: 5vw; }
 
-    /* BOTTOM PHOTOS */
-    .photo3, .photo4 {
+      /* BOTTOM PHOTOS */
+      .photo3, .photo4 {
         width: 45vw;
-        bottom: 120px;  /* push up */
+        bottom: 100px;
+      }
+
+      .photo3 { left: 5vw; }
+      .photo4 { right: 5vw; }
     }
 
-    .photo3 { left: 5vw; }
-    .photo4 { right: 5vw; }
-
-    }
   </style>
 </head>
 
@@ -228,16 +208,17 @@
   <img src="pict3.jpg" class="bg-photo photo3">
   <img src="pict4.jpg" class="bg-photo photo4">
 
-  <h1>Happy Birthday Ayah 🎉</h1>
+  <!-- MAIN CENTER CONTENT -->
+  <div class="main-content">
+    <h1>Happy Birthday Ayah 🎉</h1>
 
-  <div class="cake-container">
-    <img class="cake" src="cake.gif" alt="Birthday Cake">
-    <div class="shadow"></div>
+    <div class="cake-container">
+      <img class="cake" src="cake.gif" alt="Birthday Cake">
+      <div class="shadow"></div>
+    </div>
+
+    <button onclick="openPopup()">Click Here 💌</button>
   </div>
-
-  <br>
-
-  <button onclick="openPopup()">Click Here 💌</button>
 
   <div class="overlay" id="overlay" onclick="closePopup()"></div>
 
@@ -249,74 +230,61 @@
     <button onclick="closePopup()">Close</button>
   </div>
 
-  <!-- WORKING AUTOPLAY AUDIO (same style as before) -->
-    <audio id="bgmusic" loop>
-        <source src="lagu.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="bgmusic" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const music = document.getElementById("bgmusic");
 
-    /* Start music on first interaction */
     function startMusic() {
-    music.play();
-    document.removeEventListener("click", startMusic);
+      music.play();
+      document.removeEventListener("click", startMusic);
     }
-
     document.addEventListener("click", startMusic);
 
     function openPopup() {
-
-    launchConfetti();  
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+      launchConfetti();
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
     }
 
     function closePopup() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
     }
 
-    /* Sparkles */
     for (let i = 0; i < 35; i++) {
-    let sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    sparkle.style.left = Math.random() * 100 + "vw";
-    sparkle.style.animationDuration = (3.5 + Math.random() * 3) + "s";
-    document.body.appendChild(sparkle);
+      let sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = Math.random() * 100 + "vw";
+      sparkle.style.animationDuration = (3.5 + Math.random() * 3) + "s";
+      document.body.appendChild(sparkle);
     }
 
     function launchConfetti() {
+      const colors = ["#ff1493", "#ff69b4", "#ffffff", "#ffd700", "#ff4d6d"];
 
-    const colors = ["#ff1493", "#ff69b4", "#ffffff", "#ffd700", "#ff4d6d"];
-
-    for (let i = 0; i < 80; i++) {
-
+      for (let i = 0; i < 80; i++) {
         let confetti = document.createElement("div");
         confetti.className = "confetti";
-
-        // random color
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
-        // random direction
         let x = (Math.random() - 0.5) * 600 + "px";
         let y = (Math.random() - 0.5) * 600 + "px";
 
         confetti.style.setProperty("--x", x);
         confetti.style.setProperty("--y", y);
-
         confetti.style.animation = "confettiFall 1.5s ease-out forwards";
 
         document.body.appendChild(confetti);
 
-        // remove after animation
         setTimeout(() => {
-        confetti.remove();
+          confetti.remove();
         }, 1500);
-    }
+      }
     }
   </script>
 
 </body>
 </html>
-
